@@ -102,8 +102,9 @@ def run(measure,algor,order):
     
     
 if __name__ == '__main__':
-    import time
-    s = time.time()
+    #import time
+    #s = time.time()
+    s = time()
     try:
         conf = ModelConf('model.conf')
     except KeyError:
@@ -111,5 +112,6 @@ if __name__ == '__main__':
         exit(-1)
     recSys = runCom(conf)
     recSys.execute()
-    e = time.time()
+    #e = time.time()
+    e = time()
     print("Running time: %f s" % (e - s))

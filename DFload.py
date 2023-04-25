@@ -80,9 +80,8 @@ class DFload(object):
 
 
     def __generateDict(self):
-        '''
         if self.config['Task.name'] == 'DrugDrug':
-            for i,entry in enumerate(self.trainingData): #d-t中的d和t,目前不能解决t的冷启动的问题。
+            for i,entry in enumerate(self.trainingData):
                 drugName1,drugName2,rating = entry
                 # order the drug
                 if drugName1 not in self.drug:
@@ -95,7 +94,7 @@ class DFload(object):
                 self.molecular = self.drug
                 self.id2molecular = self.id2drug
         else:
-            for i,entry in enumerate(self.trainingData): #d-t中的d和t,目前不能解决t的冷启动的问题。
+            for i,entry in enumerate(self.trainingData):
                 drugName,molecularName,rating = entry
                 # order the drug
                 if drugName not in self.drug:
@@ -104,62 +103,15 @@ class DFload(object):
                 # order the disease
                 if molecularName not in self.molecular:
                     self.molecular[molecularName] = len(self.molecular)
-                    self.id2molecular[self.molecular[molecularName]] = molecularName
-        '''
-        if self.config['Task.name'] == 'DrugDrug':
-            for line in self.DDIrelation:
-                drugName1,drugName2,weight = line
-                # order the drug
-                if drugName1 not in self.drug:
-                    self.drug[drugName1] = len(self.drug)
-                    self.id2drug[self.drug[drugName1]] = drugName1
-                # order the drug
-                if drugName2 not in self.drug:
-                    self.drug[drugName2] = len(self.drug)
-                    self.id2drug[self.drug[drugName2]] = drugName2
-                self.molecular = self.drug
-                self.id2molecular = self.id2drug
-        elif self.config['Task.name'] == 'DrugTarget':
-            for line in self.DTIrelation:
-                drugName,molecularName,weight = line
-                # order the drug
-                if drugName not in self.drug:
-                    self.drug[drugName] = len(self.drug)
-                    self.id2drug[self.drug[drugName]] = drugName
-                # order the molecular
-                if molecularName not in self.molecular:
-                    self.molecular[molecularName] = len(self.molecular)
-                    self.id2molecular[self.molecular[molecularName]] = molecularName
-        elif self.config['Task.name'] == 'DrugDisease':
-            for line in self.DDiIrelation:
-                drugName,molecularName,weight = line
-                # order the drug
-                if drugName not in self.drug:
-                    self.drug[drugName] = len(self.drug)
-                    self.id2drug[self.drug[drugName]] = drugName
-                # order the molecular
-                if molecularName not in self.molecular:
-                    self.molecular[molecularName] = len(self.molecular)
-                    self.id2molecular[self.molecular[molecularName]] = molecularName
-        else:
-            for line in self.DSIrelation:
-                drugName,molecularName,weight = line
-                # order the drug
-                if drugName not in self.drug:
-                    self.drug[drugName] = len(self.drug)
-                    self.id2drug[self.drug[drugName]] = drugName
-                # order the molecular
-                if molecularName not in self.molecular:
-                    self.molecular[molecularName] = len(self.molecular)
-                    self.id2molecular[self.molecular[molecularName]] = molecularName        
+                    self.id2molecular[self.molecular[molecularName]] = molecularName   
   
-        for line in self.DFIrelation: #d-f中的d和f
+        for line in self.DFIrelation: #d-f
             drugName,fragmentName,weight = line
             if fragmentName not in self.fragment:
                 self.fragment[fragmentName] = len(self.fragment)
                 self.id2fragment[self.fragment[fragmentName]] = fragmentName
 
-        for line in self.FFIrelation: #f-f中的f
+        for line in self.FFIrelation: #f-f
             fragmentName1,fragmentName2,weight = line
             if fragmentName1 not in self.fragment:
                 self.fragment[fragmentName1] = len(self.fragment)
@@ -168,19 +120,19 @@ class DFload(object):
                 self.fragment[fragmentName2] = len(self.fragment)
                 self.id2fragment[self.fragment[fragmentName2]] = fragmentName2
                 
-        for line in self.DTIrelation: #d-f中的d和f
+        for line in self.DTIrelation: #d-t
             drugName,targetName,weight = line
             if targetName not in self.target:
                 self.target[targetName] = len(self.target)
                 self.id2target[self.target[targetName]] = targetName
 
-        for line in self.DDiIrelation: #d-f中的d和f
+        for line in self.DDiIrelation: #d-di
             drugName,diseaseName,weight = line
             if diseaseName not in self.disease:
                 self.disease[diseaseName] = len(self.disease)
                 self.id2disease[self.disease[diseaseName]] = diseaseName
 
-        for line in self.DSIrelation: #d-f中的d和f
+        for line in self.DSIrelation: #d-s
             drugName,sideeffectName,weight = line
             if sideeffectName not in self.sideeffect:
                 self.sideeffect[sideeffectName] = len(self.sideeffect)

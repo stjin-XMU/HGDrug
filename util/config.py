@@ -102,42 +102,6 @@ class DataSplit(object):
             FileIO.writeFile(path, 'trainingSet[' + str(order) + ']', trainingSet)
         return trainingSet,testSet
 
-    '''
-    #清理数据集版本, 防止在test中出现的drug1-drug2在train中出现drug2-drug1
-    @staticmethod
-    def crossValidation(data,k,output=False,path='./',order=1,binarized=False):
-        if k<=1 or k>10:
-            k=3
-        for i in range(k):
-            trainingSet = []
-            testSet = []
-            remove = []
-            for ind,line in enumerate(data):
-                if ind%k == i:
-                    if binarized:
-                        if line[2]:
-                            line1 = []
-                            testSet.append(line[:])
-                            line1.append(line[1])
-                            line1.append(line[0])
-                            line1.append(line[2])
-                            remove.append(line1)
-                    else:
-                        line1 = []
-                        testSet.append(line[:])
-                        line1.append(line[1])
-                        line1.append(line[0])
-                        remove.append(line1)
-                else:
-                    trainingSet.append(line[:])
-            print('Clean ' + str(i + 1) + '-th fold TrainSet data...')
-            for line in remove:
-                if line in trainingSet:
-                    trainingSet.remove(line)
-          
-            yield trainingSet,testSet
-
-    '''
     @staticmethod
     def crossValidation(data,k,output=False,path='./',order=1,binarized=False):
         if k<=1 or k>10:

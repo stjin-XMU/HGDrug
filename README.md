@@ -23,6 +23,7 @@ pip install https://download.pytorch.org/whl/cu101/torch-1.4.0-cp37-cp37m-linux_
 pip install https://download.pytorch.org/whl/cu101/torchvision-0.5.0-cp37-cp37m-linux_x86_64.whl
 
 pip install -r requirements.txt
+
 source activate HGDrug
 # Data Sets
 `./DDI_data`

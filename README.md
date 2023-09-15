@@ -54,12 +54,6 @@ Drug-disease interactions, the instructions need to be modified is as follows:
  `Task.name=DrugDisese`
 
  Drug-sideeffect interactions, the instructions need to be modified is as follows:
- `DFI=./DDiI_data/DFI.txt`
- `FFI=./DDiI_data/FFI.txt`
- `Task=./DDiI_data/DDiI.txt`
- `Task.name=DrugDisese`
-
- Drug-disease interactions, the instructions need to be modified is as follows:
  `DFI=./DSI_data/DFI.txt`
  `FFI=./DSI_data/FFI.txt`
  `Task=./DSI_data/DDiI.txt`

@@ -14,6 +14,16 @@ conda activate HGDrug
 ## download some packages
 conda install -c rdkit rdkit (contruct DSMN need)
 
+windows:
+pip install https://download.pytorch.org/whl/cu101/torch-1.4.0-cp37-cp37m-win_amd64.whl
+pip install https://download.pytorch.org/whl/cu101/torchvision-0.5.0-cp37-cp37m-win_amd64.whl
+
+linux:
+pip install https://download.pytorch.org/whl/cu101/torch-1.4.0-cp37-cp37m-linux_x86_64.whl
+pip install https://download.pytorch.org/whl/cu101/torchvision-0.5.0-cp37-cp37m-linux_x86_64.whl
+
+pip install -r requirements.txt
+source activate HGDrug
 # Data Sets
 `./DDI_data`
 `./DTI_data`
@@ -21,13 +31,40 @@ conda install -c rdkit rdkit (contruct DSMN need)
 `./DSI_data`
 
 # Run model 
-`python main.py`
+`python main.py model.conf`
 
 # Change prediction tasks
  If the users need change the prediction task, the instructions in the model.conf need to be modified.
- For example: prediction Drug-target interactions, the instructions need to be modified is as follows:
+ Drug-drug interactions, the instructions need to be modified is as follows:
+ `DFI=./DDI_data/DFI.txt`
+ `FFI=./DDI_data/FFI.txt`
+ `Task=./DDI_data/DDiI.txt`
+ `Task.name=DrugDrug`
+ 
+ Drug-target interactions, the instructions need to be modified is as follows:
  `DFI=./DTI_data/DFI.txt`
  `FFI=./DTI_data/FFI.txt`
  `Task=./DTI_data/DDiI.txt`
  `Task.name=DrugTarget`
+ 
+Drug-disease interactions, the instructions need to be modified is as follows:
+ `DFI=./DDiI_data/DFI.txt`
+ `FFI=./DDiI_data/FFI.txt`
+ `Task=./DDiI_data/DDiI.txt`
+ `Task.name=DrugDisese`
+
+ Drug-sideeffect interactions, the instructions need to be modified is as follows:
+ `DFI=./DDiI_data/DFI.txt`
+ `FFI=./DDiI_data/FFI.txt`
+ `Task=./DDiI_data/DDiI.txt`
+ `Task.name=DrugDisese`
+
+ Drug-disease interactions, the instructions need to be modified is as follows:
+ `DFI=./DSI_data/DFI.txt`
+ `FFI=./DSI_data/FFI.txt`
+ `Task=./DSI_data/DDiI.txt`
+ `Task.name=DrugSideeffect`
+
+# Output
+Output as the results of "AUROC" and "AUPR".
 
